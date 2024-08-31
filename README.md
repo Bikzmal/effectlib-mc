@@ -1,4 +1,4 @@
-# How to Use MobEffectsUtil
+# How to Use EffectLib
 
 Follow the steps below to effectively use the `MobEffectsUtil` library for creating custom mob effects.
 
