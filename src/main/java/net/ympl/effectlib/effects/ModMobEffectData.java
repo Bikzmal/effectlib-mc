@@ -12,6 +12,7 @@ public class ModMobEffectData {
     private BiConsumer<LivingEntity, Integer> onTick;
     private BiConsumer<LivingEntity, Integer> onStart;
     private BiConsumer<LivingEntity, Integer> onEnd;
+    private BiConsumer<LivingEntity, Integer> onRemove;
     private int tickDelay;
 
     public ModMobEffectData(String name, MobEffectCategory category, int color) {
@@ -21,6 +22,7 @@ public class ModMobEffectData {
         this.onEnd = (entity, amp) -> {};
         this.onStart = (entity, amp) -> {};
         this.onTick = (entity, amp) -> {};
+        this.onRemove = (entity, amp) -> {};
         this.tickDelay = 1;
     }
 
@@ -59,6 +61,19 @@ public class ModMobEffectData {
 
     public void applyOnEnd(LivingEntity entity, int amplifier) {
         onEnd.accept(entity, amplifier);
+    }
+
+    public void addOnRemove(BiConsumer<LivingEntity, Integer> onRemove) {
+        this.onRemove = onRemove;
+    }
+
+    public void applyOnRemove(LivingEntity entity, int amplifier) {
+        onRemove.accept(entity, amplifier);
+    }
+
+    public void addOnEndOrRemove(BiConsumer<LivingEntity, Integer> onEndOrRemove) {
+        this.onRemove = onEndOrRemove;
+        this.onEnd = onEndOrRemove;
     }
 
     public void setTickDelay(int n) {

@@ -15,6 +15,7 @@ public class ModMobEffect extends MobEffect {
     }
 
     public void effectEnd(LivingEntity entity, int amplifier) {}
+    public void effectRemoved(LivingEntity entity, int amplifier) {}
 
     @SubscribeEvent
     public static void onEffectEndEvent(MobEffectEvent.Expired event) {
@@ -24,6 +25,17 @@ public class ModMobEffect extends MobEffect {
 
         if (effect instanceof ModMobEffect modEffect) {
             modEffect.effectEnd(event.getEntity(), event.getEffectInstance().getAmplifier());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEffectRemoveEvent(MobEffectEvent.Remove event) {
+        if (event.getEffectInstance() == null) return;
+
+        MobEffect effect = event.getEffectInstance().getEffect().get();
+
+        if (effect instanceof ModMobEffect modEffect) {
+            modEffect.effectRemoved(event.getEntity(), event.getEffectInstance().getAmplifier());
         }
     }
 }

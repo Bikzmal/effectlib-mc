@@ -24,6 +24,11 @@ public class MobEffectsUtil {
             }
 
             @Override
+            public void effectRemoved(LivingEntity entity, int amplifier) {
+                data.applyOnRemove(entity, amplifier);
+            }
+
+            @Override
             public void onEffectStarted(@NotNull LivingEntity entity, int amplifier) {
                 data.applyOnStart(entity, amplifier);
             }

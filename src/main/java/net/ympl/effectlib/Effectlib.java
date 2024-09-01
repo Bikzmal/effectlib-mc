@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -45,24 +47,19 @@ public class Effectlib {
 //
 //        data = new ModMobEffectData("fun_effect", MobEffectCategory.NEUTRAL, 0);
 //        data.addOnStart((entity, amplifier) -> {
-//            entity.sendSystemMessage(Component.literal("EFFECT STARTED " + amplifier));
+//            AttributeInstance attr = entity.getAttribute(Attributes.GRAVITY);
+//            if (attr == null) return;
+//
+//            attr.setBaseValue(0.01);
 //        });
-//        data.addOnTick((entity, amplifier) -> {
-//            entity.teleportTo(entity.getX(), entity.getY() + amplifier + 1, entity.getZ());
-//        });
-//        data.addOnEnd((entity, amplifier) -> {
-//            entity.sendSystemMessage(Component.literal("EFFECT ENDED"));
+//        data.addOnEndOrRemove((entity, amplifier) -> {
+//            AttributeInstance attr = entity.getAttribute(Attributes.GRAVITY);
+//            if (attr == null) return;
+//
+//            attr.setBaseValue(0.08);
 //        });
 //
 //        data.setTickDelay(20);
-//        MobEffectsUtil.createEffect(data);
-//
-//        data = new ModMobEffectData("fun_effect_2", MobEffectCategory.NEUTRAL, 16777215);
-//        data.addOnTick((entity, amplifier) -> {
-//            ItemStack item = entity.getMainHandItem();
-//            if (item.isEmpty()) return;
-//            item.setDamageValue(item.getDamageValue()+1+amplifier);
-//        });
 //        MobEffectsUtil.createEffect(data);
 //
 //        MobEffectsUtil.register(bus);
